@@ -1,0 +1,28 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="https://github.com/avaloniaui"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:DllInjector.ViewModels"
+        x:Class="DllInjector.Views.MainWindow"
+        Width="500" Height="400" Title="GTA DLL Injector"
+        Background="#1E1E2E" Foreground="White">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+    <Grid RowDefinitions="Auto,Auto,*,Auto" Margin="20">
+        <StackPanel Orientation="Horizontal" Spacing="10">
+            <Button Content="Dodaj DLL" Command="{Binding AddDllCommand}" />
+            <Button Content="Usuń zaznaczoną" Command="{Binding RemoveDllCommand}" />
+        </StackPanel>
+
+        <ListBox Grid.Row="1" Items="{Binding DllList}" SelectedItem="{Binding SelectedDll}" Height="100" Margin="0,10"/>
+
+        <StackPanel Grid.Row="2" Orientation="Vertical" Spacing="10" Margin="0,10">
+            <ComboBox Items="{Binding ProcessList}" SelectedItem="{Binding SelectedProcess}" />
+        </StackPanel>
+
+        <Button Grid.Row="3" Content="Inject DLL" Command="{Binding InjectCommand}" />
+    </Grid>
+</Window>
